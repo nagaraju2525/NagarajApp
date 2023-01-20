@@ -1,13 +1,22 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
 import { Box } from "@mui/material";
 import SignInSide from "components/sample/sample";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [color, setColor] = useState<any>();
+  const arrayElements: any = [
+    1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 6, 6, 6, 7, 7,
+  ];
+  const duplicate = [...new Set(arrayElements)];
+  console.log(duplicate, "withoutDuplicates");
+  const colors = ["red", "blue", "green", "yellow", "pink"];
+  useEffect(() => {
+    let randomColor = colors[Math.floor(Math.random() * colors.length)];
+    setColor(randomColor);
+  }, []);
   return (
     <>
       <Head>
@@ -18,6 +27,14 @@ export default function Home() {
       </Head>
       <Box>
         <SignInSide />
+
+        {/* <Box
+          bgcolor={color}
+          sx={{
+            width: "200px",
+            height: "200px",
+          }}
+        ></Box> */}
       </Box>
     </>
   );
